@@ -1,0 +1,48 @@
+body {
+    transition: 1.2s;
+}
+
+.container {
+    background-color: white;
+    width: 35%;
+    margin-top: 5vh;
+    padding-right: 4vw;
+    padding-left: 4vw;
+    padding-top: 4.5vh;
+    padding-bottom: 2vh;
+    font-size: 30px;
+}
+
+.author {
+    font-size: 22px;
+    float: right;
+}
+
+.newQuote {
+    margin-top: 1vh;
+    font-size: 30px;
+    float: right;
+}
+
+.social {
+    padding-right: 5vw;
+}
+
+.buttons {
+    margin-top: 2vh;
+}
+
+.social li {
+    display: inline-block;
+    padding-right: 2vw !important;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+   text-decoration:none;
+    color: inherit;
+}
