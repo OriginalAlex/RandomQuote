@@ -36,25 +36,26 @@ var quote;
 
 function setTweet(quote, author) {
     var url = "https://twitter.com/intent/tweet?text=" + ('"' + quote + '"' + " - " + author).replace(" ", "+");
-    $("#twitter").attr("href", url);
+    document.getElementById("twitter").setAttribute("href", url);
 }
 
 function changeColorScheme() {
-    var body = $(document.body),
-    quote = $(".quote"),
-    author = $(".author"),
-    social = $(".social"),
+    var body = document.body,
+    quote = document.getElementsByClassName("quote"),
+    author = document.getElementsByClassName("author"),
+    social = document.getElementsByClassName("social"),
     newColor;
     do { // ensure there actually is a color change!
         var randomIndex = Math.floor(Math.random() * colorSchemes.length),
         newColor = colorSchemes[randomIndex];
     } while (newColor === backgroundColor);
     backgroundColor = newColor;
-    $("#newQuote").css("background-color", backgroundColor, 'important');
-    $("#newQuote").css("border-color", backgroundColor, 'important');
-    $(body).css("background-color", backgroundColor);
-    $([quote, author, social]).each(function () {
-        $(this).css("color", backgroundColor);
+    
+    document.getElementById("newQuote").style.setProperty("background-color", backgroundColor, "important");
+    document.getElementById("newQuote").style.setProperty("border-color", backgroundColor, 'important');
+    document.body.style.setProperty("background-color", backgroundColor);
+    [quote, author, social].forEach(function (e) {
+        e[0].style.setProperty("color", backgroundColor);
     });
 }
 
@@ -66,19 +67,19 @@ function populateQuoteInformation() {
         newQuote = obj.quote;
     } while (newQuote === quote);
     quote = obj.quote;
-    $(".quote").html('<i class="fa fa-quote-left" aria-hidden="true"></i> ' + obj.quote);
-    $(".author").html('- ' + obj.author);
+    document.getElementsByClassName("quote")[0].innerHTML = ('<i class="fa fa-quote-left" aria-hidden="true"></i> ' + obj.quote);
+    document.getElementsByClassName("author")[0].innerHTML = ('- ' + obj.author);
     setTweet(obj.quote, obj.author);
 }
 
 function createInteractiveButton() {
-    $("#newQuote").click(function () {
+    document.getElementById("newQuote").onclick = (function () {
         changeColorScheme();
         populateQuoteInformation();
     });
 }
 
-$(document).ready(function () {
+window.onload = (function () {
     changeColorScheme();
     populateQuoteInformation();
     createInteractiveButton();
